@@ -1,0 +1,13 @@
+.card-body .card {
+  margin-bottom: 1rem; /* Adds space below nested cards */
+}
+
+.card-body .card .card-header {
+  background-color: #f8f9fa; /* Light background for nested card header */
+  border-bottom: 1px solid #dee2e6; /* Border for nested card header */
+}
+
+.card-body .card img {
+  border-radius: 5px; /* Adds rounded corners to the image */
+  margin-bottom: 10px; /* Adds space below the image */
+}
