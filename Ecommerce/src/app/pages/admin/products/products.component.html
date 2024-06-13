@@ -7,28 +7,81 @@
             Product List
           </div>
           <div class="col-6 text-right">
-            <button class="btn btn-sm btn-success">New</button>
+            <button class="btn btn-sm btn-success" (click)="openSidePanel()">New</button>
           </div>
         </div>
       </div>
       <div class="card-body">
-        Products <!-- Content for the Product List card body goes here -->
+        <!-- Nested card within the Product List card body -->
+        <div class="card mb-3" *ngFor="let product of [productObj]">
+          <div class="card-header">
+            {{ product.productName }}
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <img [src]="product.productImageUrl || 'https://via.placeholder.com/150'" class="img-fluid" alt="Product Image">
+              </div>
+              <div class="col-md-8">
+                <h5 class="card-title">{{ product.productName }}</h5>
+                <p class="card-text">{{ product.productDescription }}</p>
+                <button class="btn btn-primary">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-4" *ngIf="sidePanelVisible">
     <div class="card">
       <div class="card-header bg-primary text-white">
         <div class="row">
           <div class="col-6">
-            New Product
+            Product
           </div>
           <div class="col-6 text-right">
-            <button class="btn btn-sm btn-success">Close</button>
+            <button class="btn btn-sm btn-success" (click)="closeSidePanel()">Close</button>
           </div>
         </div>
       </div>
-
+      <div class="card-body">
+        <!-- Form for the Product object -->
+        <form>
+          <div class="form-group">
+            <label for="productSku">SKU</label>
+            <input type="text" id="productSku" [(ngModel)]="productObj.productSku" name="productSku" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="productName">Name</label>
+            <input type="text" id="productName" [(ngModel)]="productObj.productName" name="productName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="productPrice">Price</label>
+            <input type="number" id="productPrice" [(ngModel)]="productObj.productPrice" name="productPrice" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="productShortName">Short Name</label>
+            <input type="text" id="productShortName" [(ngModel)]="productObj.productShortName" name="productShortName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea id="productDescription" [(ngModel)]="productObj.productDescription" name="productDescription" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="deliveryTimeSpan">Delivery Time Span</label>
+            <input type="text" id="deliveryTimeSpan" [(ngModel)]="productObj.deliveryTimeSpan" name="deliveryTimeSpan" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="categoryId">Category ID</label>
+            <input type="number" id="categoryId" [(ngModel)]="productObj.categoryId" name="categoryId" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="productImageUrl">Image URL</label>
+            <input type="text" id="productImageUrl" [(ngModel)]="productObj.productImageUrl" name="productImageUrl" class="form-control">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
